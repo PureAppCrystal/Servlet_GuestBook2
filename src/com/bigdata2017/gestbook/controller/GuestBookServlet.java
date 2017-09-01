@@ -46,6 +46,7 @@ public class GuestBookServlet extends HttpServlet {
 			
 			new GuestBookDao().insert( vo );
 			
+			//요청 받고 바로응답가능해서 페이지 알려줌
 			response.sendRedirect( request.getContextPath()+"/gb" );
 			
 		} else if ( "delete".equals( actionName )) {
@@ -66,6 +67,7 @@ public class GuestBookServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			
 			//Request 연장 - WEB-INF 는 외부에서는 접근이 안되지만 내부(서블렛)에서는 접근이 가능하다 
+			// 요청받았지만 다른 하나의 페이지를 더 필요하기때문에 내가 브라우저로 응답을 못주니 내 응답을 다른페이지로 같이 보내줌 
 			RequestDispatcher rd = request.getRequestDispatcher( "/WEB-INF/views/index.jsp" );
 			rd.forward( request, response);
 		}
